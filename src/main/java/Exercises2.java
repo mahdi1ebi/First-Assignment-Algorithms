@@ -15,6 +15,13 @@ public class Exercises2 {
 
     public int[] twoSum(int[] nums, int target) {
         // TODO
+         for (int i = 0 ; i < nums.length ; i++){
+            for (int j = nums.length ; j > i ; j--){
+                if (nums[i] + nums [j] == target){
+                    return new int []{i,j};
+                }
+            }
+        }
         return null;
     }
 
@@ -50,7 +57,28 @@ public class Exercises2 {
 
     public int romanToInt(String s) {
         // TODO
-        return 0;
+        Map<Character, Integer> romanValues = new HashMap<>();
+        romanValues.put('I', 1);
+        romanValues.put('V', 5);
+        romanValues.put('X', 10);
+        romanValues.put('L', 50);
+        romanValues.put('C', 100);
+        romanValues.put('D', 500);
+        romanValues.put('M', 1000);
+        int result = 0;
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            char nextChar = (i + 1 < s.length()) ? s.charAt(i + 1) : ' ';
+            int value = romanValues.get(ch);
+
+            if (nextChar != ' ' && romanValues.get(nextChar) > value) {
+                result -= value;
+            }
+            else {
+                result += value;
+            }
+        }
+        return result;
     }
 
     /*
@@ -60,7 +88,6 @@ public class Exercises2 {
 
     public List<List<Integer>> permute(int[] nums) {
         // TODO
-        return null;
     }
 
     public static void main(String[] args) {
